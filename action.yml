@@ -1,4 +1,4 @@
-name: 'Remote SSH Commands'
+name: 'Remote SSH Pusblish'
 description: 'Run remote ssh commands'
 author: 'repo@nerd4ever.com.br'
 inputs:
