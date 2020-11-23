@@ -5,6 +5,18 @@ inputs:
   command:
     description: "Command to execute on the remote server."
     required: true
+  from:
+    description: "Folder or file"
+    required: false
+    default: ""
+  to:
+    description: "Folder or file"
+    required: false
+    default: ""
+  sync:
+    description: "Mode to copy [local|remote]"
+    required: false
+    default: "local"
   host:
     description: "Hostname or IP address of the server."
     required: false
