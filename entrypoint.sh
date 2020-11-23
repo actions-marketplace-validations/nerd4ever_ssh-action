@@ -22,7 +22,7 @@ chmod 600 "$SSHPATH/known_hosts"
 chmod 600 "$SSHPATH/deploy_key"
 
 
-if [ -z "${INPUT_COMMAND}" ] && [ -z "${INPUT_SYNC}" ] ; then
+if [ -z "$INPUT_COMMAND" ] && [ -z "$INPUT_SYNC" ] ; then
   echo "Action command or sync is required ";
   exit 1
 fi;
@@ -32,11 +32,11 @@ if [ ! -z "$INPUT_SYNC" ]
 then
   echo Start Sync Command
 
-  echo "sync: ${INPUT_SYNC}";
-  echo "from: ${INPUT_FROM}";
-  echo "to: ${INPUT_TO}";
+  echo "sync: $INPUT_SYNC";
+  echo "from: $INPUT_FROM";
+  echo "to: $INPUT_TO";
 
-  if [ -z "${INPUT_FROM}" ] || [ "${INPUT_FROM}" = "" ] || [ -z "${INPUT_TO}" ] || [ "${INPUT_TO}" = "" ] ; then
+  if [ -z "$INPUT_FROM" ] || [ -z "$INPUT_TO" ] ; then
     echo "Arguments from and to are required to use sync mode";
     exit 1
   fi;
@@ -65,7 +65,7 @@ then
   esac
 fi
 
-if [ ! -z "$INPUT_SYNC" ]
+if [ ! -z "$INPUT_COMMAND" ]
   echo "$INPUT_COMMAND" > $HOME/shell.sh
   echo "exit" >> $HOME/shell.sh
   cat $HOME/shell.sh
