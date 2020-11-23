@@ -1,7 +1,7 @@
 name: test
 on: push
 env:
-  FIRST_NAME: FreeBSD
+  FIRST_NAME: Mona
 jobs:
   build:
     runs-on: ubuntu-latest
