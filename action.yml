@@ -4,7 +4,8 @@ author: 'repo@nerd4ever.com.br'
 inputs:
   command:
     description: "Command to execute on the remote server."
-    required: true
+    required: false
+    default: ""
   from:
     description: "Folder or file"
     required: false
