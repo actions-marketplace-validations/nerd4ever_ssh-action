@@ -1,21 +1,38 @@
 name: test
 on: push
-
 env:
-  FIRST_NAME: Mona
+  FIRST_NAME: Nerd
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: ls -a via OPEN SSH Private Key
+       - name: Prepare remote env
         uses: nerd4ever/ssh-action@master
         with:
           command: |
-            cd /tmp
-            ls -a
-            echo "env_var:$FIRST_NAME"
-          host: ${{ secrets.HOST }}
-          user: root
-          key: ${{ secrets.PRIVATE_KEY}}
-#          pass: ${{ secrets.PASS }}
-          args: "-tt -vvv"
+            mkdir -p /home/build/nerd4ever-sdk
+            rm -fr /home/build/nerd4ever-sdk/*
+            ls -als /home/build/
+          host: d1190c160066.sn.mynetname.net
+          user: build
+          port: 59122
+          pass: f63e83c73de52e23ab6c86cd16a42198
+      - name: Sendind to remote FreeBSD
+        uses: nerd4ever/ssh-action@master
+        with:
+          from: .
+          to: /home/build/nerd4ever-sdk/
+          sync: local
+          host: d1190c160066.sn.mynetname.net
+          user: build
+          port: 59122
+          pass: f63e83c73de52e23ab6c86cd16a42198
+      - name: Build
+        uses: nerd4ever/ssh-action@master
+        with:
+          command: |
+            ls -als /home/build/
+          host: d1190c160066.sn.mynetname.net
+          user: build
+          port: 59122
+          pass: f63e83c73de52e23ab6c86cd16a42198
