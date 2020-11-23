@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-       - name: Prepare remote env
+      - name: Prepare remote env
         uses: nerd4ever/ssh-action@master
         with:
           command: |
