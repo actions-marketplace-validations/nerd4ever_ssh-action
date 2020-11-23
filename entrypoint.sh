@@ -32,10 +32,15 @@ if [ ! -z "$INPUT_SYNC" ]
 then
   echo Start Sync Command
 
-  if [ -z "${INPUT_FROM}" ] || [ -z "${INPUT_TO}" ] ; then
+  echo "sync: ${INPUT_SYNC}";
+  echo "from: ${INPUT_FROM}";
+  echo "to: ${INPUT_TO}";
+
+  if [ -z "${INPUT_FROM}" ] || [ "${INPUT_FROM}" = "" ] || [ -z "${INPUT_TO}" ] || [ "${INPUT_TO}" = "" ] ; then
     echo "Arguments from and to are required to use sync mode";
     exit 1
   fi;
+
   case $INPUT_SYNC in
   local) 
       if [ "$INPUT_PASS" = "" ]
