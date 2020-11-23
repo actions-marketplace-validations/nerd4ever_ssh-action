@@ -26,6 +26,25 @@ echo "exit" >> $HOME/shell.sh
 cat $HOME/shell.sh
 
 echo Start Run Command
+if [ ! -z "$INPUT_SYNC" ]
+then
+  if [ -z "${INPUT_FROM}" ] || [ -z "${INPUT_TO}" ] ; then
+    echo "Arguments from and to are required to use sync mode";
+    exit 1
+  fi;
+  case $INPUT_SYNC in
+  local) 
+    sh -c "sshpass -p "$INPUT_PASS" scp -r -o StrictHostKeyChecking=no -P $INPUT_PORT ${INPUT_FROM} ${INPUT_USER}@${INPUT_HOST}:${INPUT_TO}"
+    ;;
+  remote) 
+    sh -c "sshpass -p "$INPUT_PASS" scp -r -o StrictHostKeyChecking=no -P $INPUT_PORT ${INPUT_USER}@${INPUT_HOST}:${INPUT_FROM} ${INPUT_TO}"
+    ;;
+  *) 
+    echo "Unrecognized sync mode [$INPUT_SYNC], the supported options are local or remote only";
+    exit 1
+    ;;
+  esac
+fi
 
 if [ "$INPUT_PASS" = "" ]
 then

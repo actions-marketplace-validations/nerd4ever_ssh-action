@@ -14,7 +14,7 @@ inputs:
     required: false
     default: ""
   sync:
-    description: "Mode to copy [local|remote]"
+    description: "Mode to copy (where [from] is localized) [local|remote]"
     required: false
     default: "local"
   host:
