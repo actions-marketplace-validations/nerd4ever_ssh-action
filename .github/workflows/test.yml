@@ -1,7 +1,7 @@
 name: test
 on: push
 env:
-  FIRST_NAME: Nerd
+  FIRST_NAME: FreeBSD
 jobs:
   build:
     runs-on: ubuntu-latest
