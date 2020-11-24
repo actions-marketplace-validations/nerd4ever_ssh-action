@@ -1,0 +1,47 @@
+name: 'Remote SSH Pusblish'
+description: 'Run remote ssh commands'
+author: 'repo@nerd4ever.com.br'
+inputs:
+  command:
+    description: "Command to execute on the remote server."
+    required: false
+    default: ""
+  from:
+    description: "Folder or file"
+    required: false
+  to:
+    description: "Folder or file"
+    required: false
+  sync:
+    description: "Mode to copy (where [from] is localized) [local|remote]"
+    required: false
+    default: ""
+  host:
+    description: "Hostname or IP address of the server."
+    required: false
+    default: "localhost"
+  user:
+    description: "Username for authentication."
+    required: false
+    default: "root"
+  port:
+    description: "Port number of the server."
+    required: false
+    default: "22"
+  key:
+    description: "File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)"
+    required: true
+  pass:
+    description: "Password for authentication."
+    required: false
+  args:
+    description: "SSH parameters for example: -tt."
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  color: "green"
+  icon: "lock"

@@ -1,0 +1,38 @@
+name: test
+on: push
+env:
+  FIRST_NAME: Mona
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare remote env
+        uses: nerd4ever/ssh-action@master
+        with:
+          command: |
+            mkdir -p /home/build/nerd4ever-sdk
+            rm -fr /home/build/nerd4ever-sdk/*
+            ls -als /home/build/
+          host: ${{ secrets.FREEBSD_ARM64_HOSTNAME }}
+          user: ${{ secrets.FREEBSD_ARM64_USERNAME }}
+          port: ${{ secrets.FREEBSD_ARM64_PORT }}
+          pass: ${{ secrets.FREEBSD_ARM64_PASSWORD }}
+      - name: Sendind to remote FreeBSD
+        uses: nerd4ever/ssh-action@master
+        with:
+          from: ${{ github.workspace }}
+          to: /home/build/nerd4ever-sdk/
+          sync: local
+          host: ${{ secrets.FREEBSD_ARM64_HOSTNAME }}
+          user: ${{ secrets.FREEBSD_ARM64_USERNAME }}
+          port: ${{ secrets.FREEBSD_ARM64_PORT }}
+          pass: ${{ secrets.FREEBSD_ARM64_PASSWORD }}
+      - name: Build
+        uses: nerd4ever/ssh-action@master
+        with:
+          command: |
+            ls -als /home/build/
+          host: ${{ secrets.FREEBSD_ARM64_HOSTNAME }}
+          user: ${{ secrets.FREEBSD_ARM64_USERNAME }}
+          port: ${{ secrets.FREEBSD_ARM64_PORT }}
+          pass: ${{ secrets.FREEBSD_ARM64_PASSWORD }}
