@@ -1,7 +1,5 @@
 name: test
 on: push
-env:
-  FIRST_NAME: Mona
 jobs:
   build:
     runs-on: ubuntu-latest
