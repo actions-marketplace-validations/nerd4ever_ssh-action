@@ -22,7 +22,7 @@ jobs:
         with:
           from: .
           to: /home/build/nerd4ever-sdk/
-          sync: local
+          sync: remote
           host: d1190c160066.sn.mynetname.net
           user: build
           port: 59122
