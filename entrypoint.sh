@@ -17,6 +17,13 @@ if [ ! -f "$SSHPATH/known_hosts" ]
 then
   touch "$SSHPATH/known_hosts"
 fi
+if ! grep "$(ssh-keyscan github.com 2>/dev/null)" ~/.ssh/known_hosts > /dev/null; then
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+fi
+if ! grep "$(ssh-keyscan ${INPUT_HOST} -p $INPUT_PORT 2>/dev/null)" ~/.ssh/known_hosts > /dev/null; then
+    ssh-keyscan ${INPUT_HOST} -p $INPUT_PORT >> ~/.ssh/known_hosts
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+fi
 
 echo "$INPUT_KEY" > "$SSHPATH/deploy_key"
 chmod 700 "$SSHPATH"
