@@ -77,8 +77,8 @@ then
 
   if [ "$INPUT_PASS" = "" ]
   then
-    sh -c "ssh $INPUT_ARGS -i $SSHPATH/deploy_key -o UserKnownHostsFile=/dev/null -o LogLevel=quiet -o StrictHostKeyChecking=no -p $INPUT_PORT ${INPUT_USER}@${INPUT_HOST} < $HOME/shell.sh"
+    sh -c "ssh $INPUT_ARGS -i $SSHPATH/deploy_key -o StrictHostKeyChecking=no -p $INPUT_PORT ${INPUT_USER}@${INPUT_HOST} < $HOME/shell.sh"
   else
-    sh -c "sshpass -p "$INPUT_PASS" ssh $INPUT_ARGS -o UserKnownHostsFile=/dev/null -o LogLevel=quiet -o StrictHostKeyChecking=no -p $INPUT_PORT ${INPUT_USER}@${INPUT_HOST} < $HOME/shell.sh"
+    sh -c "sshpass -p "$INPUT_PASS" ssh $INPUT_ARGS -o StrictHostKeyChecking=no -p $INPUT_PORT ${INPUT_USER}@${INPUT_HOST} < $HOME/shell.sh"
   fi
 fi

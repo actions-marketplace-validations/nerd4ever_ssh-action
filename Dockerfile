@@ -4,6 +4,8 @@ RUN apk update && \
   openssh-client \
   sshpass \
   bash
+  
+RUN ssh-keygen -t rsa -b 4096 -C "docker@nerd4ever.com.br"
 
 COPY LICENSE README.md /
 
