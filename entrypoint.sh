@@ -68,6 +68,7 @@ then
 fi
 
 if [ ! -z "$INPUT_COMMAND" ]
+then
   echo "$INPUT_COMMAND" > $HOME/shell.sh
   echo "exit" >> $HOME/shell.sh
   cat $HOME/shell.sh

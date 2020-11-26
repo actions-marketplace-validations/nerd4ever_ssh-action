@@ -9,15 +9,13 @@ inputs:
   from:
     description: "Folder or file"
     required: false
-    default: ""
   to:
     description: "Folder or file"
     required: false
-    default: ""
   sync:
     description: "Mode to copy (where [from] is localized) [local|remote]"
     required: false
-    default: "local"
+    default: ""
   host:
     description: "Hostname or IP address of the server."
     required: false

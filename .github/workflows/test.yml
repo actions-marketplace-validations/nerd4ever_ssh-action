@@ -1,7 +1,5 @@
 name: test
 on: push
-env:
-  FIRST_NAME: Mona
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,26 +11,26 @@ jobs:
             mkdir -p /home/build/nerd4ever-sdk
             rm -fr /home/build/nerd4ever-sdk/*
             ls -als /home/build/
-          host: d1190c160066.sn.mynetname.net
-          user: build
-          port: 59122
-          pass: f63e83c73de52e23ab6c86cd16a42198
+          host: ${{ secrets.FREEBSD_ARM64_HOSTNAME }}
+          user: ${{ secrets.FREEBSD_ARM64_USERNAME }}
+          port: ${{ secrets.FREEBSD_ARM64_PORT }}
+          pass: ${{ secrets.FREEBSD_ARM64_PASSWORD }}
       - name: Sendind to remote FreeBSD
         uses: nerd4ever/ssh-action@master
         with:
-          from: .
+          from: ${{ github.workspace }}
           to: /home/build/nerd4ever-sdk/
-          sync: remote
-          host: d1190c160066.sn.mynetname.net
-          user: build
-          port: 59122
-          pass: f63e83c73de52e23ab6c86cd16a42198
+          sync: local
+          host: ${{ secrets.FREEBSD_ARM64_HOSTNAME }}
+          user: ${{ secrets.FREEBSD_ARM64_USERNAME }}
+          port: ${{ secrets.FREEBSD_ARM64_PORT }}
+          pass: ${{ secrets.FREEBSD_ARM64_PASSWORD }}
       - name: Build
         uses: nerd4ever/ssh-action@master
         with:
           command: |
             ls -als /home/build/
-          host: d1190c160066.sn.mynetname.net
-          user: build
-          port: 59122
-          pass: f63e83c73de52e23ab6c86cd16a42198
+          host: ${{ secrets.FREEBSD_ARM64_HOSTNAME }}
+          user: ${{ secrets.FREEBSD_ARM64_USERNAME }}
+          port: ${{ secrets.FREEBSD_ARM64_PORT }}
+          pass: ${{ secrets.FREEBSD_ARM64_PASSWORD }}
