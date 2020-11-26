@@ -17,6 +17,9 @@ if [ ! -f "$SSHPATH/known_hosts" ]
 then
   touch "$SSHPATH/known_hosts"
 fi
+if [ ! -d /root/.ssh ]; then
+  mkdir -p /root/.ssh
+fi
 if ! grep "$(ssh-keyscan github.com 2>/dev/null)" ~/.ssh/known_hosts > /dev/null; then
     ssh-keyscan github.com > /root/.ssh/known_hosts
 fi
